@@ -1,0 +1,34 @@
+[base]
+name=CentOS-$releasever - Base - mirrors.aliyun.com
+baseurl=http://mirrors.aliyun.com/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/$releasever/updates/$basearch/Packages/gpgkey
+enabled=1
+
+[updates]
+name=CentOS-$releasever - Updates - mirrors.aliyun.com
+baseurl=http://mirrors.aliyun.com/centos/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/$releasever/updates/$basearch/Packages/gpgkey
+enabled=1
+
+[extras]
+name=CentOS-$releasever - Extras - mirrors.aliyun.com
+baseurl=http://mirrors.aliyun.com/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/$releasever/extras/$basearch/Packages/gpgkey
+enabled=1
+
+[centosplus]
+name=CentOS-$releasever - Plus - mirrors.aliyun.com
+baseurl=http://mirrors.aliyun.com/centos/$releasever/centosplus/$basearch/
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/$releasever/centosplus/$basearch/Packages/gpgkey
+enabled=0
+
+
+yum clean all
+yum makecache
+yum update
+
+yum repolist
