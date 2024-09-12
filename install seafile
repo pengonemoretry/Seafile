@@ -1,0 +1,14 @@
+mkdir /opt/seafile
+3 cd /opt/seafile
+4 wget https://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_8.0.8_x86-64.tar.gz
+5
+解压 ​
+6 #
+7 tar xzf seafile-server_8.0.8_x86-64.tar.gz
+8 mkdir installed
+9 mv seafile-server_8.0.8_x86-64.tar.gz installed
+10
+安装 Seafile 服务器 ​
+11 #
+12 cd seafile-server_8.0.8/
+13 ./setup-seafile-mysql.sh
