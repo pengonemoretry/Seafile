@@ -1,6 +1,9 @@
-[root@localhost seafile-server-9.0.8]# ./seafile.sh start
-
-Starting seafile server, please wait ...
-/opt/seafile/seafile-server-9.0.8/seafile/bin/seafile-controller: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /opt/seafile/seafile-server-9.0.8/seafile/lib/libcrypto.so.1.1)
-/opt/seafile/seafile-server-9.0.8/seafile/bin/seafile-controller: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /opt/seafile/seafile-server-9.0.8/seafile/lib/libuuid.so.1)
-Failed to start seafile server
+wget https://ftp.gnu.org/gnu/libc/glibc-2.25.tar.gz
+tar -xzf glibc-2.25.tar.gz
+cd glibc-2.25
+mkdir build
+cd build
+../configure --prefix=/opt/glibc-2.25
+make -j$(nproc)
+sudo make install
+export LD_LIBRARY_PATH=/opt/glibc-2.25/lib:$LD_LIBRARY_PATH
