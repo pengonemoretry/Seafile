@@ -30,3 +30,7 @@ sda               8:0    0  100G  0 disk
 sdb               8:16   0   15T  0 disk 
 └─sdb1            8:17   0   15T  0 part /mnt/newdisk
 sr0              11:0    1 1024M  0 rom  
+
+[root@localhost seafile-server-8.0.8]# df -h /mnt/newdisk
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb1       9.0T   81M  8.5T   1% /mnt/newdisk
