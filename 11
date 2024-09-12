@@ -1,0 +1,6 @@
+[root@localhost seafile-server-9.0.8]# ./seafile.sh start
+
+Starting seafile server, please wait ...
+/opt/seafile/seafile-server-9.0.8/seafile/bin/seafile-controller: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /opt/seafile/seafile-server-9.0.8/seafile/lib/libcrypto.so.1.1)
+/opt/seafile/seafile-server-9.0.8/seafile/bin/seafile-controller: /lib64/libc.so.6: version `GLIBC_2.25' not found (required by /opt/seafile/seafile-server-9.0.8/seafile/lib/libuuid.so.1)
+Failed to start seafile server
