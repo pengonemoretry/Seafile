@@ -2,3 +2,6 @@ python3 /opt/seafile/seafile-server-8.0.8/seahub/thirdpart/bin/gunicorn seahub.w
 $PYTHON $gunicorn_exe seahub.wsgi:application -c "${gunicorn_conf}" --preload
 $PYTHON $gunicorn_exe seahub.wsgi:application -c "${gunicorn_conf}" --preload --log-level debug --log-file ${TOPDIR}/logs/debug_gunicorn.log
 bash: seahub.wsgi:application: command not found...
+[root@centos7 ~]# firewall-cmd --zone=public --add-port=8000/tcp --permanent
+
+[root@centos7 ~]# firewall-cmd --zone=public --add-port=8082/tcp --permanent
