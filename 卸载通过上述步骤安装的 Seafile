@@ -1,0 +1,9 @@
+/opt/seafile/seafile-server-8.0.7/seafile.sh stop
+/opt/seafile/seafile-server-8.0.7/seahub.sh stop
+rm -rf /opt/seafile
+mysql -u root -p
+DROP DATABASE ccnet-db;
+DROP DATABASE seafile-db;
+DROP DATABASE seahub-db;
+DROP USER 'seafile'@'localhost';
+FLUSH PRIVILEGES;
