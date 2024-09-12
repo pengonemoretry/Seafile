@@ -16,5 +16,17 @@ echo "accesslog: ${accesslog}"
 echo "gunicorn_exe: ${gunicorn_exe}"
 
 yum install python3 python3-setuptools python3-pip python3-ldap python3-devel mysql-devel gcc gcc-c++ -y
-pip3 install --timeout=3600 django==2.2.* future mysqlclient pymysql Pillow==9.4.0 pylibmc \ 
+pip3 install --timeout=3600 django==2.2.* future mysqlclient pymysql Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha
 captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha
+
+[root@localhost seafile-server-8.0.8]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0  100G  0 disk 
+├─sda1            8:1    0    1G  0 part /boot
+└─sda2            8:2    0   99G  0 part 
+  ├─centos-root 253:0    0   50G  0 lvm  /
+  ├─centos-swap 253:1    0   10G  0 lvm  [SWAP]
+  └─centos-home 253:2    0   39G  0 lvm  /home
+sdb               8:16   0   15T  0 disk 
+└─sdb1            8:17   0   15T  0 part /mnt/newdisk
+sr0              11:0    1 1024M  0 rom  
