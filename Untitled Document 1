@@ -5,3 +5,12 @@ bash: seahub.wsgi:application: command not found...
 [root@centos7 ~]# firewall-cmd --zone=public --add-port=8000/tcp --permanent
 
 [root@centos7 ~]# firewall-cmd --zone=public --add-port=8082/tcp --permanent
+echo "SCRIPT: ${SCRIPT}"
+echo "INSTALLPATH: ${INSTALLPATH}"
+echo "TOPDIR: ${TOPDIR}"
+echo "manage_py: ${manage_py}"
+echo "gunicorn_conf: ${gunicorn_conf}"
+echo "pidfile: ${pidfile}"
+echo "errorlog: ${errorlog}"
+echo "accesslog: ${accesslog}"
+echo "gunicorn_exe: ${gunicorn_exe}"
