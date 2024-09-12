@@ -1,3 +1,4 @@
 python3 /opt/seafile/seafile-server-8.0.8/seahub/thirdpart/bin/gunicorn seahub.wsgi:application -c /opt/seafile/conf/gunicorn.conf.py --preload --log-level debug --log-file ${TOPDIR}/logs/debug_gunicorn.log
 $PYTHON $gunicorn_exe seahub.wsgi:application -c "${gunicorn_conf}" --preload
 $PYTHON $gunicorn_exe seahub.wsgi:application -c "${gunicorn_conf}" --preload --log-level debug --log-file ${TOPDIR}/logs/debug_gunicorn.log
+bash: seahub.wsgi:application: command not found...
