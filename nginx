@@ -1,0 +1,78 @@
+出现这种问题的原因可能是因为 Seafile 的服务配置默认监听的端口是 `8000`，而访问 `http://172.16.81.213/accounts/login/` 没有指定端口，系统默认会使用 `80` 端口。如果你没有将 Seafile 服务配置为通过 `80` 端口访问，那么就会导致无法访问。
+
+以下是解决方法：
+
+### 1. **使用反向代理 (推荐)**
+   可以使用 Nginx 或 Apache 这样的反向代理，将 `80` 端口的请求代理到 `8000` 端口，解决通过 `http://172.16.81.213` 直接访问的问题。
+
+#### 配置 Nginx 作为反向代理：
+1. 安装 Nginx：
+   ```bash
+   sudo yum install nginx
+   ```
+
+2. 编辑 Nginx 配置文件：
+   在 `/etc/nginx/conf.d/` 目录下创建一个新的配置文件，比如 `seafile.conf`：
+   ```bash
+   sudo nano /etc/nginx/conf.d/seafile.conf
+   ```
+
+3. 添加以下内容到配置文件：
+   ```nginx
+   server {
+       listen 80;
+       server_name 172.16.81.213;
+
+       location / {
+           proxy_pass http://127.0.0.1:8000;
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header X-Forwarded-Proto $scheme;
+           proxy_read_timeout 1200;
+       }
+
+       location /seafhttp {
+           rewrite ^/seafhttp(.*)$ $1 break;
+           proxy_pass http://127.0.0.1:8082;
+           client_max_body_size 0;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_connect_timeout 36000s;
+           proxy_read_timeout 36000s;
+       }
+
+       location /media {
+           root /opt/seafile/seahub;
+       }
+   }
+   ```
+
+4. 启动 Nginx：
+   ```bash
+   sudo systemctl start nginx
+   sudo systemctl enable nginx
+   ```
+
+通过这个配置，访问 `http://172.16.81.213/accounts/login/` 会自动代理到 `8000` 端口，解决了端口问题。
+
+### 2. **修改 Seafile 配置监听 80 端口 (不推荐)**
+   如果不想使用反向代理，你也可以让 Seafile 直接监听 `80` 端口，不过这可能会影响其他服务的使用，因为 `80` 端口通常被其他 Web 服务占用。
+
+1. 打开 Seafile 配置文件：
+   在 `seahub_settings.py` 中找到以下行：
+   ```bash
+   FILE_SERVER_PORT = 8000
+   ```
+
+2. 修改为：
+   ```bash
+   FILE_SERVER_PORT = 80
+   ```
+
+3. 重启 Seafile 服务：
+   ```bash
+   ./seafile.sh restart
+   ./seahub.sh restart
+   ```
+
+不过直接使用反向代理更安全和灵活，因为可以使用 `80` 和 `443`（HTTPS）端口，不会影响其他服务的端口使用。
