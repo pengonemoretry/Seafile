@@ -1,4 +1,7 @@
 出现这种问题的原因可能是因为 Seafile 的服务配置默认监听的端口是 `8000`，而访问 `http://172.16.81.213/accounts/login/` 没有指定端口，系统默认会使用 `80` 端口。如果你没有将 Seafile 服务配置为通过 `80` 端口访问，那么就会导致无法访问。
+[root@localhost tuyoo]# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 以下是解决方法：
 
